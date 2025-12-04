@@ -1,67 +1,128 @@
 let isRotating = false;
 
-// 定义全景图资源 (使用官方永久 4K 链接，确保 100% 可访问)
+// 定义全景图资源 (使用你刚才下载并重命名的本地图片)
 const scenesData = {
-    // --- 场景 1: 酒店大堂 (Grand Lobby) ---
+    // --- 场景 1: Cabin (原 Cabin 图片) ---
     "lobby": {
-        "title": "🏛️ 皇家大堂 (Grand Lobby)",
-        // 图片：Theatre Hall (红毯、金色装饰，非常宏伟)
-        "panorama": "https://dl.polyhaven.org/file/ph-assets/HDRIs/tonemapped_jpg/4k/theatre_hall_01_4k.jpg",
+        "title": "🌲 Cabin (Timber Lobby)",
+        // 对应重命名后的 Cabin 图片
+        "panorama": ""C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\cabin_2k.exr"",
         "hotSpots": [
             {
                 "pitch": -5,
                 "yaw": 90,
                 "type": "scene",
-                "text": "乘电梯去总统套房",
+                "text": "进入Hotel Room",
                 "sceneId": "suite"
             },
             {
                 "pitch": 0,
                 "yaw": -90,
                 "type": "scene",
-                "text": "前往贵宾休息室",
+                "text": "去Hotel Rooftop Balcony",
                 "sceneId": "lounge"
             },
             {
                 "pitch": 10,
                 "yaw": 180,
                 "type": "info",
-                "text": "前台接待处 (Reception)"
+                "text": "前台服务 (Check-in)"
             }
         ]
     },
 
-    // --- 场景 2: 总统套房 (Presidential Suite) ---
+    // --- 场景 2: Hotel Room (原 Hotel Room 图片) ---
     "suite": {
-        "title": "🛏️ 总统套房 (Presidential Suite)",
-        // 图片：Brown Photostudio (宽敞的复古风大套房，带休闲区)
-        "panorama": "https://dl.polyhaven.org/file/ph-assets/HDRIs/tonemapped_jpg/4k/brown_photostudio_02_4k.jpg",
+        "title": "🛏️ Hotel Room (Luxury Suite)",
+        // 对应重命名后的 Hotel Room 图片
+        "panorama": ""C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\hotel_room_2k.exr"",
         "hotSpots": [
             {
                 "pitch": -5,
-                "yaw": 160,
+                "yaw": 120,
                 "type": "scene",
-                "text": "去休息室喝一杯",
+                "text": "去阳台看风景",
                 "sceneId": "lounge"
             },
             {
                 "pitch": 0,
                 "yaw": -30,
                 "type": "scene",
-                "text": "返回大堂",
+                "text": "返回Cabin",
                 "sceneId": "lobby"
             },
             {
                 "pitch": -10,
-                "yaw": 100,
+                "yaw": 0,
                 "type": "info",
-                "text": "私人会客区"
+                "text": "舒适大床"
             }
         ]
     },
 
-    // --- 场景 3: 贵宾休息室 (VIP Lounge) ---
+    // --- 场景 3: Hotel Rooftop Balcony (原 Hotel Rooftop Balcony 图片) ---
     "lounge": {
-        "title": "🍸 贵宾休息室 (VIP Lounge)",
-        // 图片：Wooden Lounge (有很多沙发的木质大厅)
-        "panorama": "
+        "title": "☀️ Hotel Rooftop Balcony (Sky Terrace)",
+        // 对应重命名后的 Hotel Rooftop Balcony 图片
+        "panorama": ""C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\hotel_rooftop_balcony_1k.exr"",
+        "hotSpots": [
+            {
+                "pitch": -5,
+                "yaw": 180,
+                "type": "scene",
+                "text": "回房间休息",
+                "sceneId": "suite"
+            },
+            {
+                "pitch": 0,
+                "yaw": -60,
+                "type": "scene",
+                "text": "返回Cabin",
+                "sceneId": "lobby"
+            },
+            {
+                "pitch": 15,
+                "yaw": 0,
+                "type": "info",
+                "text": "绝美城市天际线"
+            }
+        ]
+    }
+};
+
+// 初始化查看器
+const viewer = pannellum.viewer('panorama', {
+    "default": {
+        "firstScene": "lobby",
+        "sceneFadeDuration": 1500,
+        "autoLoad": true,
+        "compass": true 
+    },
+    "scenes": scenesData
+});
+
+// 切换场景逻辑
+function switchScene(sceneId) {
+    viewer.loadScene(sceneId);
+    
+    // 更新侧边栏按钮高亮
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    const btns = document.querySelectorAll('.nav-btn');
+    // 注意：这里按顺序对应 HTML 里的按钮
+    if(sceneId === 'lobby') btns[0].classList.add('active');
+    if(sceneId === 'suite') btns[1].classList.add('active');
+    if(sceneId === 'lounge') btns[2].classList.add('active');
+}
+
+// 自动旋转逻辑
+function toggleAutoRotate() {
+    if (isRotating) {
+        viewer.stopAutoRotate();
+        isRotating = false;
+    } else {
+        viewer.startAutoRotate(-3);
+        isRotating = true;
+    }
+}
