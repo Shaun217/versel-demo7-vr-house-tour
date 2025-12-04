@@ -1,40 +1,38 @@
 let isRotating = false;
 
-// 定义全景图资源 (使用你刚才下载并重命名的本地图片)
+// 资源映射关系：
+// lobby.jpg  -> 实际上是 Cabin (休息室)
+// suite.jpg  -> 实际上是 Hotel Room (客房)
+// lounge.jpg -> 实际上是 Balcony (阳台)
+
 const scenesData = {
-    // --- 场景 1: Cabin (原 Cabin 图片) ---
+    // --- 场景 1: 休闲休息室 (Lounge) ---
+    // 对应文件名：lobby.jpg
     "lobby": {
-        "title": "🌲 Cabin (Timber Lobby)",
-        // 对应重命名后的 Cabin 图片
+        "title": "🛋️ 休闲休息室 (Timber Lounge)",
         "panorama": "./lythwood_lounge.jpg",
         "hotSpots": [
             {
                 "pitch": -5,
                 "yaw": 90,
                 "type": "scene",
-                "text": "进入Hotel Room",
+                "text": "进入客房休息",
                 "sceneId": "suite"
             },
             {
                 "pitch": 0,
                 "yaw": -90,
                 "type": "scene",
-                "text": "去Hotel Rooftop Balcony",
+                "text": "去阳台透透气",
                 "sceneId": "lounge"
-            },
-            {
-                "pitch": 10,
-                "yaw": 180,
-                "type": "info",
-                "text": "前台服务 (Check-in)"
             }
         ]
     },
 
-    // --- 场景 2: Hotel Room (原 Hotel Room 图片) ---
+    // --- 场景 2: 豪华客房 (Hotel Room) ---
+    // 对应文件名：suite.jpg
     "suite": {
-        "title": "🛏️ Hotel Room (Luxury Suite)",
-        // 对应重命名后的 Hotel Room 图片
+        "title": "🛏️ 豪华客房 (Hotel Room)",
         "panorama": "./hotel_room.jpg",
         "hotSpots": [
             {
@@ -48,22 +46,16 @@ const scenesData = {
                 "pitch": 0,
                 "yaw": -30,
                 "type": "scene",
-                "text": "返回Cabin",
+                "text": "返回休息室",
                 "sceneId": "lobby"
-            },
-            {
-                "pitch": -10,
-                "yaw": 0,
-                "type": "info",
-                "text": "舒适大床"
             }
         ]
     },
 
-    // --- 场景 3: Hotel Rooftop Balcony (原 Hotel Rooftop Balcony 图片) ---
+    // --- 场景 3: 观景阳台 (Balcony) ---
+    // 对应文件名：lounge.jpg
     "lounge": {
-        "title": "☀️ Hotel Rooftop Balcony (Sky Terrace)",
-        // 对应重命名后的 Hotel Rooftop Balcony 图片
+        "title": "☀️ 顶层全景阳台 (Rooftop Balcony)",
         "panorama": "./rooftop_night.jpg",
         "hotSpots": [
             {
@@ -77,14 +69,8 @@ const scenesData = {
                 "pitch": 0,
                 "yaw": -60,
                 "type": "scene",
-                "text": "返回Cabin",
+                "text": "返回休息室",
                 "sceneId": "lobby"
-            },
-            {
-                "pitch": 15,
-                "yaw": 0,
-                "type": "info",
-                "text": "绝美城市天际线"
             }
         ]
     }
@@ -105,12 +91,11 @@ const viewer = pannellum.viewer('panorama', {
 function switchScene(sceneId) {
     viewer.loadScene(sceneId);
     
-    // 更新侧边栏按钮高亮
+    // 更新按钮高亮
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     const btns = document.querySelectorAll('.nav-btn');
-    // 注意：这里按顺序对应 HTML 里的按钮
     if(sceneId === 'lobby') btns[0].classList.add('active');
     if(sceneId === 'suite') btns[1].classList.add('active');
     if(sceneId === 'lounge') btns[2].classList.add('active');
