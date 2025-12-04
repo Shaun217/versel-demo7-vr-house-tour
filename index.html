@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 豪宅虚拟看房</title>
+    <title>S.T.A.R. 奢华酒店 VR 漫游</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
@@ -14,15 +14,21 @@
 
     <div id="panorama"></div>
 
-    <div class="ui-layer">
-        <h1>🏡 Cyberpunk Penthouse</h1>
-        <p>点击场景中的 <b>[图标]</b> 切换房间</p>
-        <div class="controls">
-            <button onclick="viewer.setPitch(viewer.getPitch() + 10)">⬆️</button>
-            <button onclick="viewer.setPitch(viewer.getPitch() - 10)">⬇️</button>
-            <button onclick="viewer.setYaw(viewer.getYaw() - 10)">⬅️</button>
-            <button onclick="viewer.setYaw(viewer.getYaw() + 10)">➡️</button>
-            <button onclick="toggleAutoRotate()">🔄 自动旋转</button>
+    <div class="hotel-ui">
+        <div class="logo-area">
+            <h1>✨ S.T.A.R. LUXURY HOTEL</h1>
+            <p>沉浸式虚拟选房体验</p>
+        </div>
+
+        <div class="room-selector">
+            <button class="nav-btn active" onclick="switchScene('lobby')">🏛️ 酒店大堂</button>
+            <button class="nav-btn" onclick="switchScene('suite')">🛏️ 总统套房</button>
+            <button class="nav-btn" onclick="switchScene('lounge')">🍸 贵宾休息室</button>
+        </div>
+
+        <div class="controls-hint">
+            <p>🖱️ 拖拽屏幕旋转视角 | 👆 点击图标前往下一场景</p>
+            <button class="rotate-btn" onclick="toggleAutoRotate()">🔄 自动巡览</button>
         </div>
     </div>
 
