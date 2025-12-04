@@ -6,7 +6,7 @@ const scenesData = {
     "lobby": {
         "title": "🌲 Cabin (Timber Lobby)",
         // 对应重命名后的 Cabin 图片
-        "panorama": ""C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\cabin_2k.exr"",
+        "panorama": "C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\lythwood_lounge.jpg",
         "hotSpots": [
             {
                 "pitch": -5,
@@ -35,7 +35,7 @@ const scenesData = {
     "suite": {
         "title": "🛏️ Hotel Room (Luxury Suite)",
         // 对应重命名后的 Hotel Room 图片
-        "panorama": ""C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\hotel_room_2k.exr"",
+        "panorama": "C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\hotel_room.jpg",
         "hotSpots": [
             {
                 "pitch": -5,
@@ -64,7 +64,7 @@ const scenesData = {
     "lounge": {
         "title": "☀️ Hotel Rooftop Balcony (Sky Terrace)",
         // 对应重命名后的 Hotel Rooftop Balcony 图片
-        "panorama": ""C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\hotel_rooftop_balcony_1k.exr"",
+        "panorama": "C:\Users\szeng26\OneDrive - Hilton\Documents\GitHub & Vercel\versel-demo7-vr-house-tour\rooftop_night.jpg",
         "hotSpots": [
             {
                 "pitch": -5,
